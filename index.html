@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <canvas id="myCanvas" width= 2400 height = 2400></canvas>
+  <script>
+            var c = document.getElementById('myCanvas');
+            var ctx = c.getContext('2d');
+            ctx.fillStyle = "black";
+            ctx.font = "30px impact  ";
+            var words = "Symbol: $C";
+			var vords = "Company: Citibank, Inc."
+			var pords = "Price: $65.00"
+			var eords = "Estimation: $70.00"
+			var nords = "Note: BUY"
+            var count = 0;
+             // ms to wait before drawing next character
+            var chars;
+            var comp = false;
+			var freno = "no";
+			
+            function draw(vords) {
+                var pause = 80;
+				if(count < vords.length && comp != true)
+				{
+					count ++;
+					
+				}
+				else if(count > 0 && comp === true)
+				{
+					count--;	
+				}
+				else if(count === 0 && comp ===true)
+				{
+					freno = "yes";
+				}	
+				
+                // Grab all the characters up to count
+                chars = words.substr(0, count);
+				thars = vords.substr(0, count);
+				phars = pords.substr(0, count);
+				ehars = eords.substr(0, count);
+				nhars = nords.substr(0, count);
+                // Clear the canvas each time draw is called
+                ctx.clearRect(0, 0, c.width , c.height);
+                // Draw the characters to the canvas
+                ctx.fillText(thars, 700, 300);
+				ctx.fillText(chars, 700, 350);
+                ctx.fillText(phars, 700, 400);
+                ctx.fillText(ehars, 700, 450);
+                ctx.fillText(nhars, 700, 500);
+                
+				//ctx.fillText(chars, 550, 200);
+                if ((count <= (vords.length )) && freno != "yes"){
+                    setTimeout("draw(vords)", pause);
+					console.log(chars);
+					
+					if (count === (vords.length))
+					{
+						comp = true;
+					}
+					
+				}
+				
+            }
+			
+            setTimeout("draw(vords)",5000);
+            
+            
+			console.log("ACABANDO!");
+			//setTimeout("draw(vords)",0);
+			console.log("SUS!");
+			setTimeout("draw(vords)",00);
+        </script>
+</body>
+</html>
